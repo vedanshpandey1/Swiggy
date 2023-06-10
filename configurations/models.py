@@ -43,11 +43,24 @@ class MyUser(AbstractBaseUser):
     )
     first_name = models.CharField(max_length=20,null=  True, blank=True)
     last_name = models.CharField(max_length=20,null=True,blank=True)
-    # mobile = models.IntegerField(max_length=10,null=True,blank=True)
-    date_of_birth = models.DateField(null=  True, blank=True)
+    mobile = models.IntegerField(max_length=10,null=True,blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    otp=models.IntegerField(max_length=6,null=True,blank=True)
+    otp_verify = models.DateField(null=  True, blank=True)
+    otp_verify= models.BooleanField(default=False)
+    otp_expire = models.DateTimeField(null=  True, blank=True)
+    USER_TYPE=(
+        (1,'Restaurent'),
+        (2,'Customer'),
+        (3,'Driver'),
+      
+    )
+    USER_TYPE=models.IntegerField(
+        choices=USER_TYPE,
+        default=1
 
+    )
     objects = MyUserManager()
 
     USERNAME_FIELD = "email"
